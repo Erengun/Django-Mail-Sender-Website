@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Selam {{ user.username }}!
+  
+  <head>
+    <meta http-equiv="refresh" content="0; url='/cron'" />
+  </head>
+<!-- Mail gönderimi için urlye cron uzantısı ekledim giriş yaptıktan sonra Butona tıkladığımız zaman cron subdomainine gidiyor-->
+  <!--form action="/cron">
+    <button id="stat-btn" class="btn">Mail'i gönder.</button>
+  </form-->
+  <p><a href="{% url 'logout' %}">Çıkış yap</a></p>
+{% else %}
+  <p>Giriş yapmadınız</p>
+  <a href="{% url 'login' %}">Giriş yap</a>
+{% endif %}
+{% endblock %}
